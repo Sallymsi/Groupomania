@@ -1,0 +1,77 @@
+aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    > .textForm {
+        width: 60%;
+        text-align: center;
+        margin-top: 200px;
+        > h1 {
+            font-size: 30px;
+            color: white;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+    }
+}
+
+.blockForm {
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    margin: 100px;
+    margin-right: 150px;
+    > h1 {
+        font-size: 30px;
+        margin-bottom: 5px;
+        color: rgb(56, 72, 219);
+    }
+    > p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: grey;
+    }
+    > .form {
+        background-color: white;
+        width: 80%;
+        > .inputDiv {
+            margin-bottom: 25px;
+            > label {
+                color: black;
+                background-color: white;
+            }
+            > input {
+                border: none;
+                outline: none;
+                border-bottom: 1px solid grey;
+                background-color: white;
+                width: 100%;
+                color: grey;
+                > input:focus {
+                    border-color: rgba(151, 144, 144, 0.822);
+                }
+            }
+        }
+        > .button {
+            width: 80%;
+            height: 30px;
+            margin: auto;
+            margin-top: 40px;
+            > #register {
+                width: 100%;
+                height: 100%;
+                border: 2px solid rgb(56, 72, 219);
+                margin: auto;
+                border-radius: 20px;
+                background-color: white;
+            }
+        }
+    }
+}
