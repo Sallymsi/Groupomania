@@ -1,11 +1,32 @@
 import icon from '../assets/icon.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/sass/main.scss'
-import { post, getMessage } from '../js/fetch'
+import { post } from '../js/fetch'
+
 
 function Forum() {
+    const urlGet = 'http://localhost:4000/api/post/get/';
     const [inputValue, setInputValue] = useState('')
-    const message = getMessage()
+    const [message, setMessage] = useState([])
+
+
+    useEffect(() => {
+        getMessage()
+    }, [])
+
+    useEffect(() => {
+        console.log(message)
+    }, [message])
+
+    // Création de la requête GET de récupération des messages :
+    async function getMessage() {
+        fetch(urlGet)
+            .then(resp => resp.json())
+
+            .then((data) => {
+                setMessage(data)
+            })
+    };
 
     const document = {
         prenom: sessionStorage.getItem("prenom"),
@@ -35,11 +56,14 @@ function Forum() {
                 </div>
             </article>
             <article className='conversation' id='conversation'>
-                    {message?.map((msg) => (
-                            <div key={msg.id}>
-                                <p>{msg.message}</p>
-                            </div>        
-                    ))}
+                {
+                    message.map((msg) => (
+                        <div key={msg.id}>
+                            <h2>{msg.utilisateur_id}</h2>
+                            <p>{msg.message}</p>
+                        </div>
+                    ))
+                }
             </article>
         </div>
     )

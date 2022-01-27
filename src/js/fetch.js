@@ -1,7 +1,7 @@
 const url = 'http://localhost:4000/api/auth/signup/';
 const urlLogin = 'http://localhost:4000/api/auth/login/';
 const urlPost = 'http://localhost:4000/api/post/post/';
-const urlGet = 'http://localhost:4000/api/post/get/';
+// const urlGet = 'http://localhost:4000/api/post/get/';
 const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/'
 
 // Création de la requête POST pour la connexion :
@@ -49,13 +49,3 @@ export function getUserId() {
         .then(resp => resp.json())
 };
 
-
-// Création de la requête GET de récupération des messages :
-export function getMessage() {
-    fetch(urlGet)
-        .then(resp => resp.json())
-
-        .then((data) => {
-            console.table(data)
-        })
-};
