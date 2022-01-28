@@ -7,23 +7,24 @@ const jwt = require('jsonwebtoken');
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
-            var nom = req.body.nom;
-            var prenom = req.body.prenom;
-            var email = req.body.email;
-            var password = hash;
-            let sql = "INSERT INTO utilisateur (nom, prenom, email, password) VALUES (?, ?, ?, ?)";
-        
+            let nom = req.body.nom;
+            let prenom = req.body.prenom;
+            let email = req.body.email;
+            let password = hash;
+            let image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+            let sql = "INSERT INTO utilisateur (nom, prenom, email, password, image) VALUES (?, ?, ?, ?, ?)";
+
             const db = mysql.createConnection({
                 database: "groupomania",
                 host: "localhost",
                 user: "root",
                 password: "peluche",
             })
-        
+
             db.connect(function(err) {
                 if (err) throw err;
                 console.log("Connecté à la base de données MySQL!");
-                db.query(sql, [nom, prenom, email, password], function (err, result) {
+                db.query(sql, [nom, prenom, email, password, image], function (err, result) {
                     if (err) throw err;
                     res.status(201).json({ message: 'Utilisateur créé !' })
                 }); 
@@ -88,3 +89,30 @@ exports.getUserId = (req, res, next) => {
         res.status(401).json({ error: error | 'Requête non authantifiée !' });
     }
 };
+
+
+// Récupère la photo de profil de l'utilisateur :
+exports.getImgById = (req, res, next) => {
+    let userId = req.params.userId;
+    let sql = "SELECT image FROM utilisateur WHERE id = ?";
+
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+
+    db.connect(function(err) {
+        if (err) throw err;
+        console.log("Connecté à la base de données MySQL!");
+        db.query(sql, [userId], function (err, result) {
+            if (err) throw err;
+            res.status(201).json({
+                image: result[0].image
+            });
+        }); 
+    })
+
+};
+

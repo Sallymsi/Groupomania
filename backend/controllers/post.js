@@ -1,6 +1,5 @@
 const mysql = require('mysql');
 
-
 exports.post = (req, res, next) => {
     let message = req.body.message;
     let message_id = req.body.userId;
@@ -24,7 +23,7 @@ exports.post = (req, res, next) => {
 };
 
 exports.get = (req, res, next) => {
-    let sql = "SELECT * FROM message";
+    let sql = "SELECT nom, prenom, message FROM message JOIN utilisateur ON utilisateur.id = message.utilisateur_id";
 
     const db = mysql.createConnection({
         database: "groupomania",

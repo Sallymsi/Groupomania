@@ -55,22 +55,24 @@ code {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: grey;
-  width: 13%;
+  background-color: #3535e9;
+  width: 5%;
   height: 100%;
 }
 .barAccount > .blockImg {
   background-color: white;
   border: 2px solid black;
   border-radius: 50%;
+  align-items: center;
   margin-top: 25px;
   margin-bottom: 30px;
   width: 70%;
-  height: 160px;
+  height: 70px;
 }
 .barAccount > .blockImg > img {
   object-fit: cover;
   object-position: center;
+  width: 70px;
 }
 .barAccount > nav {
   width: 70%;
@@ -78,11 +80,14 @@ code {
 .barAccount > nav > li {
   list-style-type: none;
   padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
 }
 .barAccount > nav > li > a {
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-size: 30px;
+  margin: auto;
 }
 
 .boxMessage {
@@ -90,7 +95,7 @@ code {
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 70%;
+  width: 95%;
   height: 100vh;
 }
 .boxMessage > .message {
@@ -110,7 +115,7 @@ code {
 }
 .boxMessage > .message > .note > .logo {
   object-fit: cover;
-  width: 10%;
+  width: 5%;
 }
 .boxMessage > .message > .note > .text {
   width: 60%;
@@ -120,7 +125,23 @@ code {
 }
 .boxMessage > .message > .note > .submit {
   border-radius: 20px;
+  border: 2px solid #3535e9;
   margin: 30px;
+  width: 5%;
+  padding: 10px;
+  font-size: 25px;
+  color: #3535e9;
+}
+
+.conversation {
+  width: 70%;
+}
+.conversation > .containMsg {
+  margin-top: 20px;
+  border-radius: 20px;
+  border-bottom-right-radius: 0px;
+  border: 2px solid #3535e9;
+  padding: 5px;
 }
 
 aside {
@@ -128,7 +149,7 @@ aside {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: 700px;
 }
 aside > .textForm {
   width: 60%;
@@ -150,8 +171,8 @@ aside > .textForm > h1 {
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 500px;
-  margin: 100px;
+  height: 80%;
+  margin-left: 100px;
   margin-right: 150px;
 }
 .blockForm > h1 {
@@ -161,7 +182,7 @@ aside > .textForm > h1 {
 }
 .blockForm > p {
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: grey;
 }
 .blockForm > .form {
@@ -185,6 +206,9 @@ aside > .textForm > h1 {
 }
 .blockForm > .form > .inputDiv > input > input:focus {
   border-color: rgba(151, 144, 144, 0.822);
+}
+.blockForm > .form > .inputDiv > #image {
+  color: blue;
 }
 .blockForm > .form > .button {
   width: 80%;

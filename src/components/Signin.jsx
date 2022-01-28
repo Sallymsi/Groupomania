@@ -7,20 +7,23 @@ function Form() {
     const [lastInputValue, setLastInputValue] = useState('')
     const [emailInputValue, setEmailInputValue] = useState('')
     const [passwordInputValue, setPasswordInputValue] = useState('')
+    const [imageInputValue, setImageInputValue] = useState(null);
 
-    const document = {
-        nom: firstInputValue,
-        prenom: lastInputValue,
-        email: emailInputValue,
-        password: passwordInputValue
-    
-    };
+    const handleClick = (e) => {
+        const form = new FormData();
+        form.set('prenom', firstInputValue);
+        form.set('nom', lastInputValue);
+        form.set('email', emailInputValue);
+        form.set('password', passwordInputValue);
+        form.set('image', imageInputValue);
+        e.preventDefault();
 
-    const options = {
-        method: "POST",
-        body: JSON.stringify(document),
-        headers: {"Content-type": "application/json"},
-    };
+        const options = {
+            method: "POST",
+            body: form
+        };
+        signin(options);
+    }
 
     return (
         <aside>
@@ -47,11 +50,12 @@ function Form() {
                         <label for="password">Mot de passe: </label><br></br>
                         <input type="password" name="password" id="password" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
                     </div>
+                    <div className='inputDiv'>
+                        <label for="image">Insérer une image: </label><br></br>
+                        <input type="file" name="image" id="image" onChange={(e) => setImageInputValue(e.target.files[0])} required/>
+                    </div>
                     <div className='button'>
-                        <input type="submit" value="S'inscrire !" id="register" onClick={(e) => {
-                            signin(options);
-                            e.preventDefault();
-                            }}>
+                        <input type="submit" value="S'inscrire !" id="register" onClick={handleClick}>
                         </input>
                     </div>  
                 </form>

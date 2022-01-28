@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
-    width: 70%;
+    width: 95%;
     height: 100vh;
     > .message {
         display: flex;
@@ -20,7 +20,7 @@
             width: 100%;
             > .logo {
                 object-fit: cover;
-                width: 10%;
+                width: 5%;
             }
             > .text {
                 width: 60%;
@@ -30,8 +30,27 @@
             }
             > .submit {
                 border-radius: 20px;
+                border: 2px solid rgb(53, 53, 233);
                 margin: 30px;
+                width: 5%;
+                padding: 10px;
+                font-size: 25px;
+                color:rgb(53, 53, 233);
             }
         }
     }
 }
+
+.conversation {
+    width: 70%;
+    > .containMsg {
+        margin-top: 20px;
+        border-radius: 20px;
+        border-bottom-right-radius: 0px;
+        border: 2px solid rgb(53, 53, 233);
+        padding: 5px;
+    }
+
+}
+
+// <FontAwesomeIcon icon={faPaperPlane}/>

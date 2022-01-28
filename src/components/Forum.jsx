@@ -1,22 +1,18 @@
 import icon from '../assets/icon.png'
 import { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import '../styles/sass/main.scss'
 import { post } from '../js/fetch'
-
 
 function Forum() {
     const urlGet = 'http://localhost:4000/api/post/get/';
     const [inputValue, setInputValue] = useState('')
     const [message, setMessage] = useState([])
 
-
     useEffect(() => {
         getMessage()
     }, [])
-
-    useEffect(() => {
-        console.log(message)
-    }, [message])
 
     // Création de la requête GET de récupération des messages :
     async function getMessage() {
@@ -29,10 +25,7 @@ function Forum() {
     };
 
     const document = {
-        prenom: sessionStorage.getItem("prenom"),
-        nom: sessionStorage.getItem("nom"),
         userId: sessionStorage.getItem("userId"),
-        email: sessionStorage.getItem("email"),
         message: inputValue
     };
 
@@ -48,22 +41,21 @@ function Forum() {
                 <div className='note'>
                     <img className='logo' src={icon} alt='logo'></img>
                     <input type='text' className='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)} required/>
-                    <input type='submit' className='submit' onClick={(e) => {
+                    <button type='submit' className='submit' onClick={(e) => {
                         post(options);
                         e.preventDefault();
                         }}>
-                    </input>
+                            <FontAwesomeIcon icon={faPaperPlane}/>
+                    </button>
                 </div>
             </article>
-            <article className='conversation' id='conversation'>
-                {
-                    message.map((msg) => (
-                        <div key={msg.id}>
-                            <h2>{msg.utilisateur_id}</h2>
-                            <p>{msg.message}</p>
-                        </div>
-                    ))
-                }
+            <article className='conversation'>
+                {message.map((msg, index) => (
+                    <div key={`${msg}-${index}`} className="containMsg">
+                        <h2>{msg.prenom} {msg.nom}</h2>
+                        <p>{msg.message}</p>
+                    </div>
+                ))}
             </article>
         </div>
     )

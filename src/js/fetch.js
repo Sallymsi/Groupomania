@@ -1,8 +1,8 @@
 const url = 'http://localhost:4000/api/auth/signup/';
 const urlLogin = 'http://localhost:4000/api/auth/login/';
 const urlPost = 'http://localhost:4000/api/post/post/';
-// const urlGet = 'http://localhost:4000/api/post/get/';
-const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/'
+const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/';
+const urlGetImg = 'http://localhost:4000/api/auth/getImgById/';
 
 // Création de la requête POST pour la connexion :
 export function login(options) {
@@ -47,5 +47,16 @@ export function post(options) {
 export function getUserId() {
     fetch(urlGetUserId)
         .then(resp => resp.json())
+};
+
+// Création de la requête GET de récupération d'image de profil :
+export async function getImgById(userId) {
+    return fetch(urlGetImg + userId)
+            .then(resp => resp.json())
+
+            .then((data) => {
+                console.log(data)
+                return data.image
+            })
 };
 
