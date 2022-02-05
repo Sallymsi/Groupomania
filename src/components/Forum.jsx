@@ -1,28 +1,14 @@
+import React from 'react'
 import icon from '../assets/icon.png'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import '../styles/sass/main.scss'
 import { post } from '../js/fetch'
+import Discussion from '../components/Discussion'
 
 function Forum() {
-    const urlGet = 'http://localhost:4000/api/post/get/';
     const [inputValue, setInputValue] = useState('')
-    const [message, setMessage] = useState([])
-
-    useEffect(() => {
-        getMessage()
-    }, [])
-
-    // Création de la requête GET de récupération des messages :
-    async function getMessage() {
-        fetch(urlGet)
-            .then(resp => resp.json())
-
-            .then((data) => {
-                setMessage(data)
-            })
-    };
 
     const document = {
         userId: sessionStorage.getItem("userId"),
@@ -49,17 +35,9 @@ function Forum() {
                     </button>
                 </div>
             </article>
-            <article className='conversation'>
-                {message.map((msg, index) => (
-                    <div key={`${msg}-${index}`} className="containMsg">
-                        <h2>{msg.prenom} {msg.nom}</h2>
-                        <p>{msg.message}</p>
-                    </div>
-                ))}
-            </article>
+            <Discussion />
         </div>
     )
-
 };
 
 export default Forum

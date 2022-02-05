@@ -14,7 +14,7 @@ code {
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .banner {
@@ -52,21 +52,21 @@ code {
 
 .barAccount {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   background-color: #3535e9;
-  width: 5%;
-  height: 100%;
+  width: 100%;
+  height: 8%;
 }
 .barAccount > .blockImg {
-  background-color: white;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 50%;
   align-items: center;
   margin-top: 25px;
   margin-bottom: 30px;
-  width: 70%;
+  overflow: hidden;
+  width: 70px;
   height: 70px;
 }
 .barAccount > .blockImg > img {
@@ -79,9 +79,9 @@ code {
 }
 .barAccount > nav > li {
   list-style-type: none;
+  display: inline;
   padding-bottom: 15px;
-  display: flex;
-  flex-direction: row;
+  margin: 25px;
 }
 .barAccount > nav > li > a {
   text-decoration: none;
@@ -90,12 +90,41 @@ code {
   margin: auto;
 }
 
+.profilAccount {
+  background-color: white;
+  width: 95%;
+}
+.profilAccount > .containProfil {
+  border: 2px solid blue;
+  border-radius: 20px;
+  width: 50%;
+  height: 85%;
+  margin: 20px;
+  padding: 50px;
+}
+.profilAccount > .containProfil > .containImg {
+  display: flex;
+  flex-direction: row;
+}
+.profilAccount > .containProfil > .containImg > .changeImg {
+  width: 70px;
+  height: 70px;
+  border: 2px solid blue;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.profilAccount > .containProfil > .containImg > .changeImg > img {
+  object-fit: cover;
+  object-position: center;
+  width: 70px;
+}
+
 .boxMessage {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 95%;
+  width: 100%;
   height: 100vh;
 }
 .boxMessage > .message {
@@ -138,10 +167,36 @@ code {
 }
 .conversation > .containMsg {
   margin-top: 20px;
+  display: flex;
+  flex: 2;
   border-radius: 20px;
   border-bottom-right-radius: 0px;
   border: 2px solid #3535e9;
   padding: 5px;
+}
+.conversation > .containMsg > .img {
+  border: 2px solid #3535e9;
+  border-radius: 50%;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+}
+.conversation > .containMsg > .img > img {
+  object-fit: cover;
+  object-position: center;
+  width: 70px;
+}
+.conversation > .containMsg > .btn {
+  border-radius: 20px;
+  border: 2px solid #3535e9;
+  margin: 30px;
+  width: 7%;
+  padding: 10px;
+  font-size: 20px;
+  color: #3535e9;
 }
 
 aside {

@@ -1,0 +1,28 @@
+.profilAccount {
+    background-color: white;
+    width: 95%;
+    > .containProfil {
+        border: 2px solid blue;
+        border-radius: 20px;
+        width: 50%;
+        height: 85%;
+        margin: 20px;
+        padding: 50px;
+        > .containImg {
+            display: flex;
+            flex-direction: row;
+            > .changeImg {
+                width: 70px;
+                height: 70px;
+                border: 2px solid blue;
+                border-radius: 50px;
+                overflow: hidden;
+                > img {
+                    object-fit: cover;
+                    object-position: center;
+                    width: 70px;
+                }
+            }
+        }
+    }
+}

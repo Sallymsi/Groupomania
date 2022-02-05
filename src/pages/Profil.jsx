@@ -1,15 +1,15 @@
 import React from 'react';
 import '../styles/sass/main.scss'
 import Banner from "../components/Banner"
-import Forum from "../components/Forum"
+import ProfilC from "../components/ProfilC"
 
-function Homepage() {
+function Profil() {
     return (
         <div className='homepage'>
             <Banner />
-            <Forum />
+            <ProfilC />
         </div>
     )
 }
 
-export default Homepage
+export default Profil

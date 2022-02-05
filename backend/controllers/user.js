@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 
 // Enregistre un nouvel utilisateur dans la base de donnée :
@@ -95,6 +96,7 @@ exports.getUserId = (req, res, next) => {
 exports.getImgById = (req, res, next) => {
     let userId = req.params.userId;
     let sql = "SELECT image FROM utilisateur WHERE id = ?";
+    console.log(userId);
 
     const db = mysql.createConnection({
         database: "groupomania",
@@ -113,6 +115,44 @@ exports.getImgById = (req, res, next) => {
             });
         }); 
     })
+};
 
+
+// Update l'image & password :
+exports.changeInfo = (req, res, next) => {
+    let imageB = req.body.imageB;
+    let filename = imageB.split('/images/')[1];
+
+    fs.unlink(`images/${filename}`, ((err) => {
+        if (err) console.log(err);
+        else {
+            console.log("Image supprimée !")
+        }
+    }))
+    bcrypt.hash(req.body.password, 10)
+        .then(hash => {
+            console.log(req.body);
+            let password = hash;
+            let id = req.body.id;
+            let image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+            let sql = "UPDATE utilisateur SET password = ?, image = ? WHERE id = ?";
+            
+            const db = mysql.createConnection({
+                database: "groupomania",
+                host: "localhost",
+                user: "root",
+                password: "peluche",
+            })
+
+            db.connect(function(err) {
+                if (err) throw err;
+                console.log("Connecté à la base de données MySQL!");
+                db.query(sql, [password, image, id], function (err, result) {
+                    if (err) throw err;
+                    res.status(201).json({ message: 'Utilisateur mis à jour !' })
+                }); 
+            })
+        })
+        .catch(error => res.status(500).json({ message: error }));
 };
 

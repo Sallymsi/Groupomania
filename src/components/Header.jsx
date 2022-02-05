@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../assets/icon-left-font-monochrome-white.png'
 import '../styles/sass/main.scss'
 import { Link } from 'react-router-dom'
