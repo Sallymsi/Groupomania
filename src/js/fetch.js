@@ -15,9 +15,6 @@ export function login(options) {
             console.table(data);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("userId", data.userId);
-            sessionStorage.setItem("email", data.email);
-            sessionStorage.setItem("prenom", data.prenom);
-            sessionStorage.setItem("nom", data.nom);
             window.location.href = `/homepage`;
         })
 };
@@ -63,12 +60,11 @@ export function getUserId() {
 // Création de la requête GET de récupération d'image de profil :
 export async function getImgById(userId) {
     return fetch(urlGetImg + userId)
-            .then(resp => resp.json())
+        .then(resp => resp.json())
 
-            .then((data) => {
-                console.log(data)
-                return data.image
-            })
+        .then((data) => {
+            return data.image
+        })
 };
 
 // Création de la requête POST de changement d'image & Password : updateProfil()

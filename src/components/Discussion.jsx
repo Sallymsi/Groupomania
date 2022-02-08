@@ -36,7 +36,7 @@ function Discussion() {
                             <h2>{msg.prenom} {msg.nom}</h2>
                             <p>{msg.message}</p>
                         </div>
-                        <Entree msg={msg} />
+                        <Entree msg_id = {msg.id} />
                         <div>
                             <button className='btn'><FontAwesomeIcon icon={faThumbsUp}/></button>
                             <button className='btn'><FontAwesomeIcon icon={faThumbsDown}/></button>

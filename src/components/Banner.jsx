@@ -14,8 +14,6 @@ function Banner() {
         getImgById(userId).then((img) => setImageValue(img))
     }, [])
 
-    console.log(imageValue);
-
     return (
         <div className='barAccount'>
             <div className='blockImg'>

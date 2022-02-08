@@ -5,17 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { reponse } from '../js/fetch'
 
-function Entree(msg) {
+function Entree(props) {
     const [reponseInputValue, setReponseInputValue] = useState('')
+    const msg_id = props.msg_id;
 
-    function answer(even, msg) {
+    function answer(even, msg_id) {
         even.preventDefault();
 
         const documentR = {
             userId: sessionStorage.getItem("userId"),
-            message_id: msg.id,
+            message_id: msg_id,
             message: reponseInputValue
         };
+
+        console.log(msg_id);
+        console.table(documentR);
 
         const optionsR = {
             method: "POST",
@@ -28,7 +32,7 @@ function Entree(msg) {
     return (
         <div>
             <input type="text" className='text' value={reponseInputValue} onChange={(e) => setReponseInputValue(e.target.value)} required/>
-            <button type="submit" className='submit' onClick={(e) => answer(e, msg)}><FontAwesomeIcon icon={faPaperPlane}/></button> 
+            <button type="submit" className='submit' onClick={(e) => answer(e, msg_id)}><FontAwesomeIcon icon={faPaperPlane}/></button> 
         </div>
     )
 };

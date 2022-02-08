@@ -38,7 +38,7 @@ exports.reponse = (req, res, next) => {
     db.connect(function(err) {
         if (err) throw err;
         console.log("Connecté à la base de données MySQL!");
-        db.query(sql, [message, utilisateur_id,message_id], function (err, result) {
+        db.query(sql, [message, utilisateur_id, message_id], function (err, result) {
             if (err) throw err;
             res.status(201).json({ message: "reponse ajouté à la BDD !" });
         }); 

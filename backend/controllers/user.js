@@ -58,16 +58,13 @@ exports.login = (req, res, next) => {
                     }
                     console.table(result)
                     res.status(200).json({
-                        prenom: result[0].prenom,
-                        nom: result[0].nom,
-                        email: result[0].email,
                         userId: result[0].id,
                         token: jwt.sign(
                             { userId: result[0].id },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
-                        )
-                    });
+                        )  
+                    });  
                 })
                 .catch(error => res.status(500).json({ error }));
         }); 
@@ -95,7 +92,7 @@ exports.getUserId = (req, res, next) => {
 // Récupère la photo de profil de l'utilisateur :
 exports.getImgById = (req, res, next) => {
     let userId = req.params.userId;
-    let sql = "SELECT image FROM utilisateur WHERE id = ?";
+    let sql = "SELECT `image` FROM `utilisateur` WHERE `id` = ?";
     console.log(userId);
 
     const db = mysql.createConnection({
@@ -110,6 +107,7 @@ exports.getImgById = (req, res, next) => {
         console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
+            console.log(result)
             res.status(201).json({
                 image: result[0].image
             });
@@ -124,7 +122,7 @@ exports.changeInfo = (req, res, next) => {
     let filename = imageB.split('/images/')[1];
 
     fs.unlink(`images/${filename}`, ((err) => {
-        if (err) console.log(err);
+        if (err) throw err;
         else {
             console.log("Image supprimée !")
         }
