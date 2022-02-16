@@ -1,6 +1,7 @@
 const url = 'http://localhost:4000/api/auth/signup/';
 const urlLogin = 'http://localhost:4000/api/auth/login/';
 const urlPost = 'http://localhost:4000/api/post/post/';
+const urlDelete = 'http://localhost:4000/api/post/delete/';
 const urlResponse = 'http://localhost:4000/api/post/response/';
 const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/';
 const urlGetImg = 'http://localhost:4000/api/auth/getImgById/';
@@ -15,7 +16,9 @@ export function login(options) {
             console.table(data);
             sessionStorage.setItem("token", data.token);
             sessionStorage.setItem("userId", data.userId);
-            window.location.href = `/homepage`;
+            if (data.token) {
+                window.location.href = `/homepage`;
+            }
         })
 };
 
@@ -31,9 +34,9 @@ export function signin(options) {
 };
 
 
-// Création de la requête POST pour les posts (message): addMessage()
-export function post(options) {
-    fetch(urlPost, options)
+// Création de la requête POST pour les posts (message): 
+export function addMessage(options) {
+    return fetch(urlPost, options)
         .then(resp => resp.json())
 
         .then((data) => {
@@ -41,8 +44,8 @@ export function post(options) {
         })
 };
 
-// Création de la requête POST pour les posts (reponse): sendAnswer
-export function reponse(optionsR) {
+// Création de la requête POST pour les posts (reponse):
+export function sendAnswer(optionsR) {
     fetch(urlResponse, optionsR)
         .then(resp => resp.json())
 
@@ -67,13 +70,19 @@ export async function getImgById(userId) {
         })
 };
 
-// Création de la requête POST de changement d'image & Password : updateProfil()
-export function change(options) {
+// Création de la requête POST de changement d'image & Password : 
+export function updateProfil(options) {
     fetch(urlChange, options)
         .then(resp => resp.json())
 
         .then((data) => {
             console.table(data)
         })
+};
+
+// Création de la requête POST afin de supprimer un message de la BDD :
+export function deleteMsg(options) {
+    fetch(urlDelete, options)
+        .then(resp => resp.json())
 };
 

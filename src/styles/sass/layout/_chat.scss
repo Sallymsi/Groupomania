@@ -1,0 +1,29 @@
+
+.boxChat {
+    width: 50%;
+    > .chat {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        > .containAnswers {
+            display: flex;
+            width: 100%;
+            > .img {
+                border: 2px solid rgb(53, 53, 233);
+                border-radius: 50%;
+                overflow: hidden;
+                align-items: center;
+                margin-top: 25px;
+                margin-bottom: 30px;
+                width: 70px;
+                height: 70px;
+                > img {
+                    object-fit: cover;
+                    object-position: center;
+                    width: 70px;
+                }
+            }
+        }
+    }
+}
+    

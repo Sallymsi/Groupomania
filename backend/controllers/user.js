@@ -50,7 +50,9 @@ exports.login = (req, res, next) => {
     db.connect(function(err) {
         if (err) throw err;
         db.query(sql, [email], function (err, result) {
-            if (err) throw err;
+            if (!result[0]) {
+                return res.status(401).json({ error: "utilisateur introuvable" })
+            };
             bcrypt.compare(password, result[0].password)
                 .then(valid => {
                     if (!valid) {

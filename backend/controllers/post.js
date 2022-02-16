@@ -64,3 +64,49 @@ exports.get = (req, res, next) => {
         }); 
     })
 };
+
+exports.getAnswers = (req, res, next) => {
+    let sql = "SELECT nom, prenom, message, image, message_id FROM reponse JOIN utilisateur ON utilisateur.id = reponse.utilisateur_id";
+
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+
+    db.connect(function(err) {
+        if (err) throw err;
+        console.log("Connecté à la base de données MySQL!");
+        db.query(sql, function (err, result) {
+            if (err) throw err;
+            res.status(201).json(result);
+        }); 
+    })
+};
+
+exports.deleteMsg = (req, res, next) => {
+    let message_id = req.body.message_id;
+    let sql1 = "DELETE FROM message WHERE id= ?";
+    let sql2 = "DELETE FROM reponse WHERE message_id= ?";
+
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+
+    db.connect(function(err) {
+        if (err) throw err;
+        console.log("Connecté à la base de données MySQL!");
+        db.query(sql1, [message_id], function (err, result) {
+            if (err) throw err;
+        }); 
+
+        db.query(sql2, [message_id], function (err, result) {
+            if (err) throw err;
+        res.status(201).json({ message: "All supprimé à la BDD !" });
+        }); 
+    })
+};

@@ -3,7 +3,7 @@ import '../styles/sass/main.scss'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import { reponse } from '../js/fetch'
+import { sendAnswer } from '../js/fetch'
 
 function Entree(props) {
     const [reponseInputValue, setReponseInputValue] = useState('')
@@ -26,11 +26,11 @@ function Entree(props) {
             body: JSON.stringify(documentR),
             headers: {"Content-type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("token")},
         };
-        reponse(optionsR);
+        sendAnswer(optionsR);
     };
 
     return (
-        <div>
+        <div className='entreeMsg'>
             <input type="text" className='text' value={reponseInputValue} onChange={(e) => setReponseInputValue(e.target.value)} required/>
             <button type="submit" className='submit' onClick={(e) => answer(e, msg_id)}><FontAwesomeIcon icon={faPaperPlane}/></button> 
         </div>

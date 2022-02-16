@@ -1,9 +1,9 @@
 import React from 'react';
 import '../styles/sass/main.scss'
 import { useState, useEffect } from 'react'
-import { change, getImgById } from "../js/fetch"
+import { updateProfil, getImgById } from "../js/fetch"
 
-function ProfilC() {
+function Profil() {
     const [imageInputValue, setImageInputValue] = useState(null);
     const [imageValue, setImageValue] = useState('')
     const [passwordInputValue, setPasswordInputValue] = useState('')
@@ -28,7 +28,7 @@ function ProfilC() {
         }
 
         if (passwordInputValue === repeatPasswordInputValue) {
-            change(options);
+            updateProfil(options);
         } else {
             alert('Les mots de passe ne sont pas identiques !')
         };
@@ -64,4 +64,4 @@ function ProfilC() {
     
 }
 
-export default ProfilC
+export default Profil
