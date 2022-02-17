@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/sass/main.scss'
-import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import Entree from '../components/Entree'
