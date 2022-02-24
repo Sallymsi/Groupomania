@@ -5,7 +5,7 @@ import Login from '../components/Login'
 
 function Register() {
   return (
-    <div>
+    <div className='homeFond'>
       <Header />
       <Login />
     </div>

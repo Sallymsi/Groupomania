@@ -5,7 +5,7 @@ import '../styles/sass/main.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
-function ButtonUpdate ({getMessage, msg_id, message, userId}) {
+function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
     const [inputValue, setInputValue] = useState('');
     const messageUtilisateurId = userId;
     const currentUserId = sessionStorage.getItem("userId");
@@ -36,7 +36,7 @@ function ButtonUpdate ({getMessage, msg_id, message, userId}) {
         };
 
         if (currentUserId == messageUtilisateurId) {
-            updateMsg(options).then(() => getMessage());
+            updateMsg(options).then(() => getMessage(optionsGetMessage));
         } else {
             alert("Vous n'avez pas les droits");
         };

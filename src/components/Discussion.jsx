@@ -8,7 +8,7 @@ import ButtonDelete from './ButtonDelete'
 import ButtonUpdate from './ButtonUpdate'
 
 
-function Discussion({message, getMessage}) {
+function Discussion({message, getMessage, optionsGetMessage}) {
 
     return (
         <div className='boxMessage'>
@@ -17,20 +17,26 @@ function Discussion({message, getMessage}) {
                     <div key={`${msg}-${index}`} className="containMsg">
                         <div className='containMsgBox'>
                             <div className='boxImg'>
-                                <div className='img'>
-                                    <img alt='profil' src={msg.image}></img>
-                                </div>
-                                <div>
+                                <div className='imgName'>
+                                    <div className='img'>
+                                        <img alt='profil' src={msg.image}></img>
+                                    </div>
                                     <h2>{msg.prenom} {msg.nom}</h2>
+                                    <ButtonDelete msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                    <ButtonUpdate msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                </div>
+                                <div className='boxMsg'>
                                     <p>{msg.message}</p>
-                                    <div>
+                                    <div className='imgFile'>
                                         <img alt='file' src={msg.file}></img>
                                     </div>
                                 </div>
-                                <ButtonDelete msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} />
-                                <ButtonUpdate msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} />
+                                
                             </div>
-                            <Entree msg_id = {msg.id} />
+                            <div className='boxCommentaire'>
+                                <h3>Laisser un commentaire : </h3>
+                                <Entree msg_id = {msg.id} />
+                            </div>
                         </div>
                         <Chat />
                     </div>

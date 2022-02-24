@@ -2,7 +2,7 @@ import React from 'react'
 import { deleteMsg } from '../js/fetch'
 import '../styles/sass/main.scss'
 
-function ButtonDelete ({getMessage, msg_id, userId, message}) {
+function ButtonDelete ({getMessage, msg_id, userId, message, optionsGetMessage}) {
     const utilisateur_id = userId;
     const currentUserId = sessionStorage.getItem('userId');
 
@@ -21,7 +21,7 @@ function ButtonDelete ({getMessage, msg_id, userId, message}) {
         };
 
         if (currentUserId == utilisateur_id) {
-            deleteMsg(options).then(() => getMessage());
+            deleteMsg(options).then(() => getMessage(optionsGetMessage));
         } else {
             alert("Vous n'avez pas les droits");
         };

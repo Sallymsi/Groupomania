@@ -10,7 +10,7 @@ router.post('/post', auth, multer, postCtrl.post);
 router.post('/response', auth, postCtrl.reponse);
 router.delete('/delete', auth, postCtrl.deleteMsg);
 router.put('/update', auth, postCtrl.updateMsg);
-router.get('/get', postCtrl.get);
+router.get('/get', auth, postCtrl.get);
 router.get('/getAnswers', postCtrl.getAnswers);
 
 module.exports = router;

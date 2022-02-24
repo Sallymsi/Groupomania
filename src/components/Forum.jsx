@@ -25,29 +25,39 @@ function Forum() {
         const options = {
             method: "POST",
             body: form,
-            headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")},
+            headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
         };
 
-        addMessage(options).then(() => getMessage());
+        addMessage(options).then(() => getMessage(optionsGetMessage));
     }
 
 
     useEffect(() => {
-        getMessage()
+        getMessage(optionsGetMessage)
     }, [])
 
+    const optionsGetMessage = {
+        method: "GET",
+        headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
+    };
+
     // Création de la requête GET de récupération des messages :
-    async function getMessage() {
-        fetch(urlGet)
+    async function getMessage(optionsGetMessage) {
+        fetch(urlGet, optionsGetMessage)
             .then(resp => resp.json())
 
             .then((data) => {
-                setMessage(data);
-                console.table(data);
+                    setMessage(data);
+                    console.table(data);
+            })
+            .catch(error => {
+                console.log(error);
+                sessionStorage.clear();
+                window.location.href = `/register`;
             })
     };
 
-    console.table(message[0]);
+
 
     return (
         <div className='boxMessage'>
@@ -60,7 +70,7 @@ function Forum() {
                     <button type='submit' className='submit' onClick={handleClick}><FontAwesomeIcon icon={faPaperPlane}/></button>
                 </div>
             </article>
-            <Discussion message = {message} getMessage = {getMessage} />
+            <Discussion message = {message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
         </div>
     )
 };

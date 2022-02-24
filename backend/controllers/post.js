@@ -62,7 +62,6 @@ exports.get = (req, res, next) => {
         console.log("Connecté à la base de données MySQL!");
         db.query(sql, function (err, result) {
             if (err) throw err;
-            console.table(result)
             res.status(201).json(result);
         }); 
     })

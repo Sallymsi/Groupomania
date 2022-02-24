@@ -5,9 +5,6 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url("../images/fond.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
   }
   
 code {
@@ -22,5 +19,11 @@ code {
   margin: auto;
   display: flex;
   flex-direction: column;
-  // background: white;
+}
+
+.homeFond {
+  background-image: url("../images/fond.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
