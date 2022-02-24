@@ -95,7 +95,6 @@ exports.getUserId = (req, res, next) => {
 exports.getImgById = (req, res, next) => {
     let userId = req.params.userId;
     let sql = "SELECT `image` FROM `utilisateur` WHERE `id` = ?";
-    console.log(userId);
 
     const db = mysql.createConnection({
         database: "groupomania",
@@ -109,7 +108,6 @@ exports.getImgById = (req, res, next) => {
         console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
-            console.log(result)
             res.status(201).json({
                 image: result[0].image
             });

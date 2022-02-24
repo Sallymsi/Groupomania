@@ -53,7 +53,7 @@ function Form() {
                     </div>
                     <div className='inputDiv'>
                         <label for="image">Insérer une image: </label><br></br>
-                        <input type="file" name="image" id="image" onChange={(e) => setImageInputValue(e.target.files[0])} required/>
+                        <input type="file" name="image" id="image" onChange={(e) => setImageInputValue(e.target.files[0])} />
                     </div>
                     <div className='button'>
                         <input type="submit" value="S'inscrire !" id="register" onClick={handleClick}>

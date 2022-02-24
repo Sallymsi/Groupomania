@@ -2,14 +2,16 @@ import React from 'react'
 import { deleteMsg } from '../js/fetch'
 import '../styles/sass/main.scss'
 
-function ButtonDelete (props) {
-    const msg_id = props.msg_id;
+function ButtonDelete ({getMessage, msg_id, userId, message}) {
+    const utilisateur_id = userId;
+    const currentUserId = sessionStorage.getItem('userId');
 
     function sendDelete(even, msg_id) {
         even.preventDefault();
 
         const document = {
             message_id: msg_id,
+            message: message
         };
 
         const options = {
@@ -17,7 +19,13 @@ function ButtonDelete (props) {
             body: JSON.stringify(document),
             headers: {"Content-type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("token")},
         };
-        deleteMsg(options);
+
+        if (currentUserId == utilisateur_id) {
+            deleteMsg(options).then(() => getMessage());
+        } else {
+            alert("Vous n'avez pas les droits");
+        };
+        
     }
 
     return (

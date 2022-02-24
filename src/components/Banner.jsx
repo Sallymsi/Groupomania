@@ -7,7 +7,7 @@ import { faAddressCard, faUsers, faSignOutAlt, faChalkboard } from '@fortawesome
 import { getImgById } from "../js/fetch"
 
 function Banner() {
-    const [imageValue, setImageValue] = useState('')
+    const [imageValue, setImageValue] = useState('');
     let userId = sessionStorage.getItem("userId");
 
     useEffect(() => {

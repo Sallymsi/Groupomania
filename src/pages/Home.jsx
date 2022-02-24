@@ -4,6 +4,10 @@ import Signin from '../components/Signin'
 
 
 function Home() {
+  if (sessionStorage.getItem("token") !== null) {
+    window.location.href = `/register`;
+  }
+
   return (
     <div>
       <Header />

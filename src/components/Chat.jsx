@@ -20,6 +20,7 @@ function Chat() {
             })
     };
 
+
     return (
         <div className='boxChat'>
             <article className='chat'>

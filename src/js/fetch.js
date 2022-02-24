@@ -2,6 +2,7 @@ const url = 'http://localhost:4000/api/auth/signup/';
 const urlLogin = 'http://localhost:4000/api/auth/login/';
 const urlPost = 'http://localhost:4000/api/post/post/';
 const urlDelete = 'http://localhost:4000/api/post/delete/';
+const urlUpdate = 'http://localhost:4000/api/post/update/';
 const urlResponse = 'http://localhost:4000/api/post/response/';
 const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/';
 const urlGetImg = 'http://localhost:4000/api/auth/getImgById/';
@@ -35,7 +36,7 @@ export function signin(options) {
 
 
 // Création de la requête POST pour les posts (message): 
-export function addMessage(options) {
+export async function addMessage(options) {
     return fetch(urlPost, options)
         .then(resp => resp.json())
 
@@ -45,8 +46,8 @@ export function addMessage(options) {
 };
 
 // Création de la requête POST pour les posts (reponse):
-export function sendAnswer(optionsR) {
-    fetch(urlResponse, optionsR)
+export function sendAnswer(options) {
+    fetch(urlResponse, options)
         .then(resp => resp.json())
 
         .then((data) => {
@@ -81,8 +82,14 @@ export function updateProfil(options) {
 };
 
 // Création de la requête POST afin de supprimer un message de la BDD :
-export function deleteMsg(options) {
-    fetch(urlDelete, options)
+export async function deleteMsg(options) {
+    return fetch(urlDelete, options)
+        .then(resp => resp.json())
+};
+
+// Création de la requête PUT afin de modifier un message :
+export async function updateMsg(options) {
+    return fetch(urlUpdate, options)
         .then(resp => resp.json())
 };
 

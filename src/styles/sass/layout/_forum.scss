@@ -32,11 +32,26 @@
             > .submit {
                 border-radius: 20px;
                 border: 2px solid rgb(53, 53, 233);
-                margin: 30px;
+                margin: 10px;
                 width: 5%;
                 padding: 10px;
                 font-size: 25px;
                 color:rgb(53, 53, 233);
+                background-color: white;
+            }
+            > .label-file {
+                cursor: pointer;
+                color: rgb(53, 53, 233);
+                border: 2px solid rgb(53, 53, 233);
+                border-radius: 20px;
+                width: 4%;
+                margin: 10px;
+                padding: 5px;
+                font-size: 30px;
+                text-align: center;
+            }
+            > .file {
+                display: none;
             }
         }
     }
