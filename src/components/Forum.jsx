@@ -16,11 +16,16 @@ function Forum() {
     
 
     const handleClick = (e) => {
+        e.preventDefault();
+
         const form = new FormData();
         form.set('userId', userId);
         form.set('message', inputValue);
-        form.set('file', fileInputValue);
-        e.preventDefault();
+
+        if (fileInputValue !== null) {
+            form.set('file', fileInputValue);
+        };
+        
 
         const options = {
             method: "POST",
