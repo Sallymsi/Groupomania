@@ -3,7 +3,7 @@ import { updateMsg } from '../js/fetch'
 import { useState } from 'react'
 import '../styles/sass/main.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faPen} from '@fortawesome/free-solid-svg-icons'
 
 function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
     const [inputValue, setInputValue] = useState('');
@@ -46,7 +46,7 @@ function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
 
     return (
         <div className='inputUpdate'>
-            <button type="button"  onClick={() => openText()}>Modifier</button>
+            <button type="button" className="buttonUpdate" onClick={() => openText()}><FontAwesomeIcon icon={faPen} /></button>
             <form className='inputTextarea'>
                 <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} required />
                 <button type="submit" onClick={(e) => sendUpdate(e)}><FontAwesomeIcon icon={faPaperPlane}/></button>

@@ -5,16 +5,17 @@ exports.post = (req, res, next) => {
     let message = req.body.message;
     let utilisateur_id = req.body.userId;
 
-    if (req.body.file) {
-        let file = `${req.protocol}://${req.get('host')}/files/${req.file.filename}`;
-        let sql = "INSERT INTO message (message, utilisateur_id, file) VALUES (?, ?, ?)";
-
-        const db = mysql.createConnection({
+    const db = mysql.createConnection({
             database: "groupomania",
             host: "localhost",
             user: "root",
             password: "peluche",
-            })
+    })
+
+    if (req.file) {
+        let file = `${req.protocol}://${req.get('host')}/files/${req.file.filename}`;
+        let sql = "INSERT INTO message (message, utilisateur_id, file) VALUES (?, ?, ?)";
+        console.log('OK');
 
         db.connect(function(err) {
             if (err) throw err;
@@ -24,15 +25,9 @@ exports.post = (req, res, next) => {
                 res.status(201).json({ message: "message ajouté à la BDD !" });
             }); 
         })
-    } else {
+    } else if (!req.file) {
         let sql = "INSERT INTO message (message, utilisateur_id) VALUES (?, ?)";
-
-        const db = mysql.createConnection({
-            database: "groupomania",
-            host: "localhost",
-            user: "root",
-            password: "peluche",
-            })
+        console.log("NONE");
     
         db.connect(function(err) {
             if (err) throw err;

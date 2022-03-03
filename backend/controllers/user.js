@@ -127,6 +127,14 @@ exports.changeInfo = (req, res, next) => {
             console.log("Image supprimée !")
         }
     }))
+
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+    
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             console.log(req.body);
@@ -134,13 +142,6 @@ exports.changeInfo = (req, res, next) => {
             let id = req.body.id;
             let image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             let sql = "UPDATE utilisateur SET password = ?, image = ? WHERE id = ?";
-            
-            const db = mysql.createConnection({
-                database: "groupomania",
-                host: "localhost",
-                user: "root",
-                password: "peluche",
-            })
 
             db.connect(function(err) {
                 if (err) throw err;
@@ -152,5 +153,37 @@ exports.changeInfo = (req, res, next) => {
             })
         })
         .catch(error => res.status(500).json({ message: error }));
+};
+
+
+// Delete l'utilisateur de la base de donnée : (A finir)
+exports.deleteUser = (req, res, next) => {
+    let userId = req.body.userId;
+    let image = req.body.image;
+    let filename = image.split('/images/')[1];
+    let sql = 'DELETE FROM utilisateur WHERE id = ?';
+
+    fs.unlink(`images/${filename}`, ((err) => {
+        if (err) throw err;
+        else {
+            console.log("Image supprimée !")
+        }
+    }))
+
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+
+    db.connect(function(err) {
+        if (err) throw err;
+        console.log("Connecté à la base de données MySQL!");
+        db.query(sql, [userId], function (err, result) {
+            if (err) throw err;
+            res.status(201).json({ message: 'Utilisateur supprimé !' })
+        }); 
+    })
 };
 

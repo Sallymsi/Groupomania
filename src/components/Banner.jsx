@@ -16,15 +16,17 @@ function Banner() {
 
     return (
         <div className='barAccount'>
-            <div className='blockImg'>
-                <img alt='profil' src={imageValue}></img>
+            <div>
+                <div className='blockImg'>
+                    <img alt='profil' src={imageValue}></img>
+                </div>
+                <nav>
+                    <li><Link to="/homepage"><a><FontAwesomeIcon icon={faChalkboard}/></a></Link></li>
+                    <li><Link to="/profil"><a><FontAwesomeIcon icon={faAddressCard}/></a></Link></li>
+                    <li><Link to="/amis"><a><FontAwesomeIcon icon={faUsers}/></a></Link></li>
+                    <li><Link to="/"><a><FontAwesomeIcon icon={faSignOutAlt}/></a></Link></li>
+                </nav>
             </div>
-            <nav>
-                <li><Link to="/homepage"><a><FontAwesomeIcon icon={faChalkboard}/></a></Link></li>
-                <li><Link to="/profil"><a><FontAwesomeIcon icon={faAddressCard}/></a></Link></li>
-                <li><Link to="/amis"><a><FontAwesomeIcon icon={faUsers}/></a></Link></li>
-                <li><Link to="/"><a><FontAwesomeIcon icon={faSignOutAlt}/></a></Link></li>
-            </nav>
         </div>
     )
 }

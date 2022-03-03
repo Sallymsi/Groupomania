@@ -1,5 +1,7 @@
 import React from 'react'
 import { deleteMsg } from '../js/fetch'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import '../styles/sass/main.scss'
 
 function ButtonDelete ({getMessage, msg_id, userId, message, optionsGetMessage}) {
@@ -30,7 +32,7 @@ function ButtonDelete ({getMessage, msg_id, userId, message, optionsGetMessage})
 
     return (
         <div>
-            <button type="button" onClick={(e) => sendDelete(e, msg_id)}>Supprimer</button> 
+            <button type="button" className="buttonDelete" onClick={(e) => sendDelete(e, msg_id)}><FontAwesomeIcon icon={faTrash} /></button> 
         </div>
     )
 };

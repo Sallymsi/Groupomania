@@ -16,26 +16,25 @@ function Forum() {
     
 
     const handleClick = (e) => {
-        e.preventDefault();
 
         const form = new FormData();
         form.set('userId', userId);
         form.set('message', inputValue);
-
+        
         if (fileInputValue !== null) {
             form.set('file', fileInputValue);
-        };
-        
+        }
+        e.preventDefault();
 
         const options = {
             method: "POST",
             body: form,
             headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
         };
+        console.log(form);
 
         addMessage(options).then(() => getMessage(optionsGetMessage));
     }
-
 
     useEffect(() => {
         getMessage(optionsGetMessage)
@@ -53,7 +52,6 @@ function Forum() {
 
             .then((data) => {
                     setMessage(data);
-                    console.table(data);
             })
             .catch(error => {
                 console.log(error);
@@ -61,8 +59,6 @@ function Forum() {
                 window.location.href = `/register`;
             })
     };
-
-
 
     return (
         <div className='boxMessage'>

@@ -11,34 +11,38 @@ import ButtonUpdate from './ButtonUpdate'
 function Discussion({message, getMessage, optionsGetMessage}) {
 
     return (
-        <div className='boxMessage'>
+        <div className='boxMessageBlock'>
             <article className='conversation'>
                 {message.map((msg, index) => (
                     <div key={`${msg}-${index}`} className="containMsg">
                         <div className='containMsgBox'>
                             <div className='boxImg'>
                                 <div className='imgName'>
-                                    <div className='img'>
-                                        <img alt='profil' src={msg.image}></img>
+                                    <div className='blockLeft'>
+                                        <div className='img'>
+                                            <img alt='profil' src={msg.image}></img>
+                                        </div>
+                                        <h2>{msg.prenom} {msg.nom}</h2>
                                     </div>
-                                    <h2>{msg.prenom} {msg.nom}</h2>
-                                    <ButtonDelete msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
-                                    <ButtonUpdate msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                    <div className='blockRight'>
+                                        <ButtonDelete msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                        <ButtonUpdate msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/> 
+                                    </div>
                                 </div>
                                 <div className='boxMsg'>
-                                    <p>{msg.message}</p>
-                                    <div className='imgFile'>
-                                        <img alt='file' src={msg.file}></img>
-                                    </div>
+                                    <h2>{msg.message}</h2>
+                                    {msg.file && (
+                                        <div className='imgFile'>
+                                            <img alt='file' src={msg.file}></img>
+                                        </div>
+                                    )}
                                 </div>
-                                
                             </div>
                             <div className='boxCommentaire'>
-                                <h3>Laisser un commentaire : </h3>
                                 <Entree msg_id = {msg.id} />
                             </div>
                         </div>
-                        <Chat />
+                        <Chat msg_id = {msg.id}/>
                     </div>
                 ))}
             </article>
@@ -55,3 +59,5 @@ export default Discussion
     
 </div>
 */
+
+

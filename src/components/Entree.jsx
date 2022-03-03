@@ -12,21 +12,18 @@ function Entree(props) {
     function answer(even, msg_id) {
         even.preventDefault();
 
-        const documentR = {
+        const document = {
             userId: sessionStorage.getItem("userId"),
             message_id: msg_id,
             message: reponseInputValue
         };
 
-        console.log(msg_id);
-        console.table(documentR);
-
-        const optionsR = {
+        const options = {
             method: "POST",
-            body: JSON.stringify(documentR),
+            body: JSON.stringify(document),
             headers: {"Content-type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("token")},
         };
-        sendAnswer(optionsR);
+        sendAnswer(options);
     };
 
     return (

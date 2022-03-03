@@ -9,7 +9,7 @@ const admin = require('../middleware/admin');
 router.post('/post', auth, multer, postCtrl.post);
 router.post('/response', auth, postCtrl.reponse);
 router.delete('/delete', auth, postCtrl.deleteMsg);
-router.put('/update', auth, postCtrl.updateMsg);
+router.put('/update', auth, multer, postCtrl.updateMsg);
 router.get('/get', auth, postCtrl.get);
 router.get('/getAnswers', postCtrl.getAnswers);
 

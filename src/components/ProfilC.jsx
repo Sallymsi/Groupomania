@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/sass/main.scss'
 import { useState, useEffect } from 'react'
-import { updateProfil, getImgById } from "../js/fetch"
+import { updateProfil, getImgById, deleteUser } from "../js/fetch"
 
 function Profil() {
     const [imageInputValue, setImageInputValue] = useState(null);
@@ -32,8 +32,24 @@ function Profil() {
         } else {
             alert('Les mots de passe ne sont pas identiques !')
         };
-        
-    }
+    };
+
+    const deleteAccount = (e) => {
+        e.preventDefault();
+
+        const document = {
+            userId: userId,
+            image: imageValue
+        };
+
+        const options = {
+            method: 'DELETE',
+            body: JSON.stringify(document),
+            headers: {"Content-type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("token")},
+        }
+
+        deleteUser(options);
+    };
 
     return (
         <div className='profilAccount'>
@@ -43,22 +59,27 @@ function Profil() {
                         <img alt='profil' src={imageValue}></img>
                     </div>
                     <div className='inputDiv'>
-                        <label for="image">Une envie de changer de photo de profil ? : </label><br></br>
+                        <label for="image"><h2>Une envie de changer de photo de profil  ? </h2></label><br></br>
                         <input type="file" name="image" id="image" onChange={(e) => setImageInputValue(e.target.files[0])} required/>
                     </div>
                 </div>
+                <h2>Pour plus de sécurité, changez de mot de passe régulièrement : </h2>
                 <div className='inputDiv'>
-                    <label for="password">Vous voulez changer de mot de passe ?  </label><br></br>
+                    <label for="password"><p>Veuillez taper votre mot de passe :  </p></label><br></br>
                     <input type="password" name="password" id="password" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
                 </div>
                 <div className='inputDiv'>
-                    <label for="repeatPassword">Veuillez retaper votre mot de passe :  </label><br></br>
+                    <label for="repeatPassword"><p>Veuillez retaper votre mot de passe :  </p></label><br></br>
                     <input type="password" name="repeatPassword" id="repeatPassword" value={repeatPasswordInputValue} onChange={(e) => setRepeatPasswordInputValue(e.target.value)} required/>
                 </div>
                 <div className='button'>
                     <input type="submit" value="Envoyer !" id="register" onClick={handleClick}></input>
                 </div>
             </form>
+            <aside>
+                <label><h2>Souhaitez-vous supprimer votre compte définitivement ? </h2></label>
+                <button type="button" onClick={deleteAccount}>Supprimer</button>
+            </aside>
         </div>
     )
     

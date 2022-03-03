@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
-    width: 70%;
+    width: 60%;
     height: 93vh;
     margin: auto;
     > .message {
@@ -17,33 +17,41 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid grey;
+            border-bottom: 4px solid rgb(189, 189, 189);
             background-color: white;
             width: 100%;
             > .logo {
                 object-fit: cover;
-                width: 5%;
+                width: 6%;
             }
             > .text {
-                width: 60%;
+                width: 75%;
                 height: 55%;
-                border:2px solid grey;
+                background-color: rgb(53, 53, 233);
+                border: 3px solid rgb(209,81,90);
                 border-radius: 20px;
+                padding-left: 20px;
+                font-family: "Ubuntu";
+                font-size: 20px;
+                color: rgb(209,81,90);
             }
             > .submit {
                 border-radius: 20px;
-                border: 2px solid rgb(53, 53, 233);
+                border: 4px solid rgb(53, 53, 233);
+                background-color: rgb(53, 53, 233);
+                box-shadow: 5px 5px 5px  grey;
                 margin: 10px;
                 width: 5%;
                 padding: 10px;
                 font-size: 25px;
-                color:rgb(53, 53, 233);
-                background-color: white;
+                color: rgb(209,81,90);
             }
             > .label-file {
                 cursor: pointer;
-                color: rgb(53, 53, 233);
-                border: 2px solid rgb(53, 53, 233);
+                color: rgb(209,81,90);
+                background-color: rgb(53, 53, 233);
+                border: 4px solid rgb(53, 53, 233);
+                box-shadow: 5px 5px 5px  grey;
                 border-radius: 20px;
                 width: 4%;
                 margin: 10px;
@@ -57,75 +65,105 @@
         }
     }
 }
-
-.conversation {
+.boxMessageBlock {
+    overflow-y: scroll;
     width: 100%;
-    > .containMsg {
-        margin-top: 20px;
-        display: flex;
-        border-radius: 20px;
-        border-bottom-right-radius: 0px;
-        border: 2px solid rgb(53, 53, 233);
-        padding: 5px;
-        width: 100%;
-        > .containMsgBox {
+    > .conversation {
+        width: 85%;
+        margin: auto;
+        margin-bottom: 20px;
+        > .containMsg {
             display: flex;
             flex-direction: column;
-            width: 60%;
-            > .boxImg {
+            justify-content: center;
+            border-radius: 20px;
+            box-sizing: border-box;
+            background-color: rgb(53, 53, 233);
+            box-shadow: 5px 5px 5px  grey;
+            padding: 5px;
+            margin-top: 20px;
+            width: 100%;
+            > .containMsgBox {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                > .imgName {
+                > .boxImg {
                     display: flex;
-                    border-bottom: 2px solid rgb(53, 53, 233);
-                    > .img {
-                        border: 2px solid rgb(53, 53, 233);
-                        border-radius: 50%;
+                    flex-direction: column;
+                    width: 100%;
+                    > .imgName {
+                        display: flex;
                         align-items: center;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        overflow: hidden;
-                        width: 70px;
-                        height: 70px;
-                        > img {
-                            object-fit: cover;
-                            object-position: center;
-                            width: 70px;
+                        justify-content: space-between;
+                        border-bottom: 2px solid rgb(209,81,90);
+                        > .blockLeft {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 30%;
+                            > .img {
+                                border: 2px solid rgb(53, 53, 233);
+                                border-radius: 50%;
+                                border: 2px solid white;
+                                align-items: center;
+                                margin-left: 20px;
+                                margin-right: 10px;
+                                overflow: hidden;
+                                width: 70px;
+                                height: 70px;
+                                    > img {
+                                        object-fit: cover;
+                                        object-position: center;
+                                        width: 70px;
+                                    }
+                            }
+                            > h2 {
+                                padding-left: 20px;
+                                margin-top: 25px;
+                                color: rgb(209,81,90);
+                                font-family: "Ubuntu";
+                                font-size: 35px;
+                            }
+                        }  
+                        > .blockRight {
+                            display: flex;
+                            justify-content: flex-end;
+                            width: 20%;
                         }
                     }
-                    > h2 {
-                        padding-left: 20px;
-                        margin-top: 25px;
-                    }
-                }
-                > .boxMsg {
-                    width: 70%;
-                    > .imgFile {
-                        width: 100%;
-                        > img {
-                            object-fit: cover;
-                            object-position: center;
+                    > .boxMsg {
+                        width: 70%;
+                        > h2 {
+                            font-family: "Ubuntu";
+                            font-size: 20px;
+                            color: rgb(209,81,90);
+                            margin-left: 30px;
+                        }
+                        > .imgFile {
                             width: 100%;
+                            > img {
+                                object-fit: cover;
+                                object-position: center;
+                                width: 100%;
+                            }
                         }
                     }
                 }
-                
+                > .boxCommentaire {
+                    display: flex;
+                    align-items: center;
+                }
             }
-            > .boxCommentaire {
-                display: flex;
-                align-items: center;
+            > .btn {
+                border-radius: 20px;
+                border: 2px solid rgb(53, 53, 233);
+                margin: 30px;
+                width: 7%;
+                padding: 10px;
+                font-size: 20px;
+                color:rgb(53, 53, 233);
             }
-        }
-        > .btn {
-            border-radius: 20px;
-            border: 2px solid rgb(53, 53, 233);
-            margin: 30px;
-            width: 7%;
-            padding: 10px;
-            font-size: 20px;
-            color:rgb(53, 53, 233);
         }
     }
-
 }
+

@@ -7,6 +7,7 @@ const urlResponse = 'http://localhost:4000/api/post/response/';
 const urlGetUserId = 'http://localhost:4000/api/auth/getUserId/';
 const urlGetImg = 'http://localhost:4000/api/auth/getImgById/';
 const urlChange = 'http://localhost:4000/api/auth/changeInfo/';
+const urlDeleteUser = 'http://localhost:4000/api/auth/deleteUser/'
 
 // Création de la requête POST pour la connexion :
 export function login(options) {
@@ -91,5 +92,17 @@ export async function deleteMsg(options) {
 export async function updateMsg(options) {
     return fetch(urlUpdate, options)
         .then(resp => resp.json())
+};
+
+export async function deleteUser(options) {
+    fetch(urlDeleteUser, options)
+        .then(resp => resp.json())
+
+        .then((data) => {
+            console.log(data);
+            sessionStorage.removeItem("userId");
+            sessionStorage.removeItem("token");
+            window.location.href = `/homepage`;
+        })
 };
 
