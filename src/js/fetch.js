@@ -102,7 +102,7 @@ export async function deleteUser(options) {
             console.log(data);
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
-            window.location.href = `/homepage`;
+            window.location.href = `/`;
         })
 };
 
