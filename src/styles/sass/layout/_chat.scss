@@ -13,35 +13,47 @@
             > .img {
                 display: flex;
                 align-items: center;
-                margin-left: 20px;
-                margin-right: 10px;
+                justify-content: space-between;
+                box-sizing: content-box;
+                width: 100%;
                 border-bottom: 2px solid rgb(209,81,90);
-                > .iconArrow {
-                    font-size: 40px;
-                    color: rgb(209,81,90);
-                    margin-right: 20px;
-                }
-                > div {
-                    border: 2px solid white;
-                    border-radius: 50%;
-                    overflow: hidden;
+                > .blockLeft {
+                    display: flex;
                     align-items: center;
-                    margin-top: 25px;
-                    margin-bottom: 30px;
-                    width: 70px;
-                    height: 70px;
-                    > img {
-                        object-fit: cover;
-                        object-position: center;
+                    margin-left: 10px;
+                    width: 60%;
+                    > .iconArrow {
+                        font-size: 40px;
+                        color: rgb(209,81,90);
+                        margin-right: 20px;
+                    }
+                    > .profilCercle {
+                        border: 2px solid white;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        align-items: center;
+                        margin-top: 25px;
+                        margin-bottom: 30px;
                         width: 70px;
+                        height: 70px;
+                        > img {
+                            object-fit: cover;
+                            object-position: center;
+                            width: 70px;
+                        }
+                    }
+                    > h2 {
+                        font-family: "Ubuntu";
+                        color: rgb(209,81,90);
+                        padding-left: 20px;
+                        margin-top: 25px;
+                        width: 50%;
                     }
                 }
-                > h2 {
-                    font-family: "Ubuntu";
-                    color: rgb(209,81,90);
-                    padding-left: 20px;
-                    margin-top: 25px;
-                    width: 50%;
+                > .blockRight {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
                 }
             }
             > p {

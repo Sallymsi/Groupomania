@@ -31,14 +31,15 @@ function Forum() {
             body: form,
             headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
         };
-        console.log(form);
 
-        addMessage(options).then(() => getMessage(optionsGetMessage));
-    }
+        if(inputValue !== '') {
+            addMessage(options).then(() => getMessage(optionsGetMessage));
+        };
+    };
 
     useEffect(() => {
         getMessage(optionsGetMessage)
-    }, [])
+    }, []);
 
     const optionsGetMessage = {
         method: "GET",

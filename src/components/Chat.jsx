@@ -1,26 +1,12 @@
 import React from 'react'
 import '../styles/sass/main.scss'
-import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import ButtonDeleteAnswer from './ButtonDeleteAnswer'
+import ButtonUpdateAnswer from './ButtonUpdateAnswer'
+import ButtonLikeAnswer from './ButtonLikeAnswer'
 
-function Chat({msg_id}) {
-    const urlGet = 'http://localhost:4000/api/post/getAnswers/'
-    const [answers, setAnswers] = useState([])
-
-    useEffect(() => {
-        getAnswers()
-    }, [])
-
-    // Création de la requête GET de récupération des réponses :
-    async function getAnswers() {
-        fetch(urlGet)
-            .then(resp => resp.json())
-
-            .then((data) => {
-                setAnswers(data)
-            })
-    };
+function Chat({msg_id, answers, getAnswers, optionsGetAnswers}) {
 
     let resultAnswers = answers.filter(answer => answer.message_id == msg_id);
 
@@ -30,15 +16,22 @@ function Chat({msg_id}) {
                 <article className='chat'>
                     <div key={`${msg}-${index}`} className="containAnswers">
                         <div className='img'>
-                            <FontAwesomeIcon icon={faArrowRight} className="iconArrow"/>
-                            <div>
-                                <img alt='profil' src={msg.image}></img>
+                            <div className='blockLeft'>
+                                <FontAwesomeIcon icon={faArrowRight} className="iconArrow"/>
+                                <div className='profilCercle'>
+                                    <img alt='profil' src={msg.image}></img>
+                                </div>
+                                <h2>{msg.prenom} {msg.nom}</h2>
                             </div>
-                            <h2>{msg.prenom} {msg.nom}</h2>
+                            {msg.utilisateur_id == sessionStorage.getItem('userId') && (
+                                <div className='blockRight'>
+                                    <ButtonDeleteAnswer getAnswers ={getAnswers} optionsGetAnswers = {optionsGetAnswers} answerId = {msg.id} userId = {msg.utilisateur_id}/>
+                                    <ButtonUpdateAnswer getAnswers ={getAnswers} optionsGetAnswers = {optionsGetAnswers} answerId = {msg.id} userId = {msg.utilisateur_id}/>
+                                    <ButtonLikeAnswer msgId = {msg.id}/> 
+                                </div>
+                            )}                             
                         </div>
-
                         <p>{msg.message}</p>
-
                     </div>
                 </article>
            ))} 

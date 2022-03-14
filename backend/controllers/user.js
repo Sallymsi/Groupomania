@@ -73,34 +73,16 @@ exports.login = (req, res, next) => {
     })
 };
 
-// Récupère l'userId de l'utilisateur :
-exports.getUserId = (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-        const userId = decodedToken.userId;
-        req.auth = { userId };
-        if (req.body.userId && req.body.userId !== userId) {
-            throw 'User ID non valable !';
-        } else {
-            res.status(200).json({userId});
-        }
-    } catch (error) {
-        res.status(401).json({ error: error | 'Requête non authantifiée !' });
-    }
-};
-
-
 // Récupère la photo de profil de l'utilisateur :
 exports.getImgById = (req, res, next) => {
     let userId = req.params.userId;
-    let sql = "SELECT `image` FROM `utilisateur` WHERE `id` = ?";
+    let sql = "SELECT image FROM `utilisateur` WHERE id = ?";
 
     const db = mysql.createConnection({
         database: "groupomania",
         host: "localhost",
         user: "root",
-        password: "peluche",
+        password: "peluche"
     })
 
     db.connect(function(err) {
@@ -156,12 +138,14 @@ exports.changeInfo = (req, res, next) => {
 };
 
 
-// Delete l'utilisateur de la base de donnée : (A finir)
+// Delete l'utilisateur de la base de donnée :
 exports.deleteUser = (req, res, next) => {
     let userId = req.body.userId;
     let image = req.body.image;
     let filename = image.split('/images/')[1];
     let sql = 'DELETE FROM utilisateur WHERE id = ?';
+    let sql2 = 'DELETE FROM message WHERE utilisateur_id = ?';
+    let sql3 = 'DELETE FROM reponse WHERE utilisateur_id = ?';
 
     fs.unlink(`images/${filename}`, ((err) => {
         if (err) throw err;
@@ -182,7 +166,39 @@ exports.deleteUser = (req, res, next) => {
         console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
+        }); 
+
+        db.query(sql2, [userId], function (err, result) {
+            if (err) throw err;
+        }); 
+        
+        db.query(sql3, [userId], function (err, result) {
+            if (err) throw err;
             res.status(201).json({ message: 'Utilisateur supprimé !' })
+        }); 
+    })
+};
+
+
+// Renvoie l'accèe Admin de l'utilisateur : 
+exports.getAdmin = (req, res, next) => {
+    const userId = req.headers.authorization.split(' ')[2];  
+    let sql = "SELECT acces FROM utilisateur WHERE id = ?";
+    
+    const db = mysql.createConnection({
+        database: "groupomania",
+        host: "localhost",
+        user: "root",
+        password: "peluche",
+    })
+
+    db.connect(function(err) {
+        if (err) throw err;
+        console.log("Connecté à la base de données MySQL!");
+        db.query(sql, [userId], function (err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.status(201).json({ acces: result[0].acces });
         }); 
     })
 };

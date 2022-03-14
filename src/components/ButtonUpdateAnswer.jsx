@@ -1,17 +1,17 @@
 import React from 'react'
-import { updateMsg } from '../js/fetch'
+import { updateAnswer } from '../js/fetch'
 import { useState } from 'react'
 import '../styles/sass/main.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faPen} from '@fortawesome/free-solid-svg-icons'
 
-function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
+function ButtonUpdateAnswer ({getAnswers, answerId, userId, optionsGetAnswers}) {
     const [inputValue, setInputValue] = useState('');
     const messageUtilisateurId = userId;
     const currentUserId = sessionStorage.getItem("userId");
 
     function openText() {
-        const textArea = document.getElementsByClassName("inputTextarea");
+        const textArea = document.getElementsByClassName("inputTextareaAnswer");
 
         if (textArea[0].style.display == "none") {
             textArea[0].style.display = "block";
@@ -24,8 +24,7 @@ function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
         even.preventDefault();
 
         const document = {
-            message_id: msg_id,
-            userId: currentUserId,
+            answerId: answerId,
             message: inputValue
         };
 
@@ -36,7 +35,7 @@ function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
         };
 
         if (currentUserId == messageUtilisateurId) {
-            updateMsg(options).then(() => getMessage(optionsGetMessage));
+            updateAnswer(options).then(() => getAnswers(optionsGetAnswers));
         } else {
             alert("Vous n'avez pas les droits");
         };
@@ -47,7 +46,7 @@ function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
     return (
         <div className='inputUpdate'>
             <button type="button" className="buttonUpdate" onClick={() => openText()}><FontAwesomeIcon icon={faPen} /></button>
-            <form className='inputTextarea'>
+            <form className='inputTextareaAnswer'>
                 <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} required />
                 <button type="submit" onClick={(e) => sendUpdate(e)}><FontAwesomeIcon icon={faPaperPlane}/></button>
             </form>
@@ -55,4 +54,4 @@ function ButtonUpdate ({getMessage, msg_id, userId, optionsGetMessage}) {
     )
 };
 
-export default ButtonUpdate
+export default ButtonUpdateAnswer

@@ -1,14 +1,35 @@
 import React from 'react'
 import '../styles/sass/main.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react'
 import Entree from '../components/Entree'
 import Chat from '../components/Chat'
-import ButtonDelete from './ButtonDelete'
-import ButtonUpdate from './ButtonUpdate'
+import ButtonDeletePost from './ButtonDeletePost'
+import ButtonUpdatePost from './ButtonUpdatePost'
+import ButtonLikePost from './ButtonLikePost'
 
 
 function Discussion({message, getMessage, optionsGetMessage}) {
+    const urlGetAnswers = 'http://localhost:4000/api/post/getAnswers/'
+    const [answers, setAnswers] = useState([])
+
+    useEffect(() => {
+        getAnswers(options)
+    }, [])
+
+    const options = {
+        method: "GET",
+        headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
+    };
+
+    // Création de la requête GET de récupération des réponses :
+    async function getAnswers(options) {
+        fetch(urlGetAnswers, options)
+            .then(resp => resp.json())
+
+            .then((data) => {
+                setAnswers(data)
+            })
+    };
 
     return (
         <div className='boxMessageBlock'>
@@ -25,8 +46,11 @@ function Discussion({message, getMessage, optionsGetMessage}) {
                                         <h2>{msg.prenom} {msg.nom}</h2>
                                     </div>
                                     <div className='blockRight'>
-                                        <ButtonDelete msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
-                                        <ButtonUpdate msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/> 
+                                        <ButtonDeletePost msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                        <ButtonUpdatePost msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                        <div className='blockLike'>
+                                            <ButtonLikePost msg_id = {msg.id} />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='boxMsg'>
@@ -34,15 +58,16 @@ function Discussion({message, getMessage, optionsGetMessage}) {
                                     {msg.file && (
                                         <div className='imgFile'>
                                             <img alt='file' src={msg.file}></img>
+                                            <video controls src={msg.file} type="video/mp4" alt='file'></video>
                                         </div>
                                     )}
                                 </div>
                             </div>
                             <div className='boxCommentaire'>
-                                <Entree msg_id = {msg.id} />
+                                <Entree msg_id = {msg.id} getAnswers = {getAnswers} optionsGetAnswers = {options}/>
                             </div>
                         </div>
-                        <Chat msg_id = {msg.id}/>
+                        <Chat answers = {answers} getAnswers = {getAnswers} optionsGetAnswers = {options} msg_id = {msg.id} />
                     </div>
                 ))}
             </article>
@@ -51,13 +76,4 @@ function Discussion({message, getMessage, optionsGetMessage}) {
 };
 
 export default Discussion
-
-/*
-<div>
-    <button className='btn'><FontAwesomeIcon icon={faThumbsUp}/></button>
-    <button className='btn'><FontAwesomeIcon icon={faThumbsDown}/></button>
-    
-</div>
-*/
-
 

@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { sendAnswer } from '../js/fetch'
 
-function Entree(props) {
+function Entree({msg_id, getAnswers, optionsGetAnswers}) {
     const [reponseInputValue, setReponseInputValue] = useState('')
-    const msg_id = props.msg_id;
 
     function answer(even, msg_id) {
         even.preventDefault();
@@ -23,7 +22,10 @@ function Entree(props) {
             body: JSON.stringify(document),
             headers: {"Content-type": "application/json", "Authorization": "Bearer " + sessionStorage.getItem("token")},
         };
-        sendAnswer(options);
+
+        if (reponseInputValue !== '') {
+            sendAnswer(options).then(() => getAnswers(optionsGetAnswers));
+        };
     };
 
     return (
