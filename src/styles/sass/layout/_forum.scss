@@ -65,6 +65,13 @@
                 @media (max-width: 850px) {
                     width: 8%;
                 }
+                @media (max-width: 450px) {
+                    width: 12%;
+                    margin: 5px;
+                }
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
             > .label-file {
                 cursor: pointer;
@@ -82,6 +89,13 @@
                 @media (max-width: 850px) {
                     width: 6%;
                 }
+                @media (max-width: 450px) {
+                    width: 8%;
+                    margin: 5px;
+                }
+                &:hover {
+                    transform: scale(1.1);
+                } 
             }
             > .file {
                 display: none;
@@ -128,7 +142,7 @@
                             align-items: center;
                             width: 60%;
                             @media (max-width: 600px) {
-                                width: 50%;
+                                width: 55%;
                             }
                             > .img {
                                 border: 2px solid rgb(53, 53, 233);
@@ -140,10 +154,20 @@
                                 overflow: hidden;
                                 width: 70px;
                                 height: 70px;
+                                @media (max-width: 500px ) {
+                                    width: 60px;
+                                    height: 60px;
+                                    margin-left: 10px;
+                                    margin-right: 0px;
+                                }
                                     > img {
                                         object-fit: cover;
                                         object-position: center;
                                         width: 70px;
+                                        @media (max-width: 500px ) {
+                                            width: 60px;
+                                            height: 60px;
+                                        }
                                     }
                             }
                             > h2 {
@@ -156,6 +180,10 @@
                                     font-size: 25px;
                                     padding-left: 10px;
                                 }
+                                @media (max-width: 550px ) {
+                                    font-size: 20px;
+                                    padding-left: 5px;
+                                }
                             }
                         }  
                         > .blockRight {
@@ -163,8 +191,11 @@
                             justify-content: flex-end;
                             align-items: center;
                             width: 25%;
+                            @media (max-width: 700px) {
+                                margin-right: 10px;
+                            }
                             @media (max-width: 600px) {
-                                width: 35%;
+                                width: 40%;
                             }
                             > .blockLike {
                                 display: flex;

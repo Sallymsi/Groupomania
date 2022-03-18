@@ -7,7 +7,7 @@ const MIME_TYPES = {
   'image/png': 'png'
 };
 
-// Configuration de Multer :
+// Configuration de Multer pour les images de profil utilisateur :
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');

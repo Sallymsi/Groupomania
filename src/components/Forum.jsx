@@ -55,7 +55,6 @@ function Forum() {
                     setMessage(data);
             })
             .catch(error => {
-                console.log(error);
                 sessionStorage.clear();
                 window.location.href = `/register`;
             })

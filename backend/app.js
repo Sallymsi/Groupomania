@@ -2,7 +2,6 @@ const express = require('express');
 const path = require("path");
 const bodyParser = require('body-parser');
 const app = express();
-
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
 
@@ -17,9 +16,11 @@ app.use((req, res, next) => {
     next();
 });
 
+// Initialisation des routes pour les fichiers/images utilisateurs :
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/files', express.static(path.join(__dirname, 'files')));
 
+// Initialisation des routes Post et Users :
 app.use('/api/post', postRoutes);
 app.use('/api/auth', userRoutes);
 

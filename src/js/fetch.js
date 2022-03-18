@@ -41,30 +41,20 @@ export function signin(options) {
         .then(resp => resp.json())
   
         .then((data) => {
-            console.table(data);
             window.location.href = `/register`;
         })
 };
-
 
 // Création de la requête POST pour les posts (message): 
 export async function addMessage(options) {
     return fetch(urlPost, options)
         .then(resp => resp.json())
-
-        .then((data) => {
-            console.table(data)
-        })
 };
 
 // Création de la requête POST pour les posts (reponse):
 export async function sendAnswer(options) {
     return fetch(urlResponse, options)
         .then(resp => resp.json())
-
-        .then((data) => {
-            console.table(data)
-        })
 };
 
 // Création de la requête GET de récupération d'image de profil :
@@ -81,10 +71,6 @@ export async function getImgById(userId) {
 export function updateProfil(options) {
     fetch(urlChange, options)
         .then(resp => resp.json())
-
-        .then((data) => {
-            console.table(data)
-        })
 };
 
 // Création de la requête DELETE afin de supprimer un post de la BDD :
@@ -105,7 +91,6 @@ export async function deleteUser(options) {
         .then(resp => resp.json())
 
         .then((data) => {
-            console.log(data);
             sessionStorage.removeItem("userId");
             sessionStorage.removeItem("token");
             window.location.href = `/`;
@@ -124,7 +109,7 @@ export async function updateAnswer(options) {
         .then(resp => resp.json())
 };
 
-// Création de la requête GET afin de récuperer les droits d'admin :
+// Création de la requête GET afin de récuperer/vérifier les droits d'admin :
 export async function getAdmin(options) {
     return fetch(urlGetAdmin, options)
         .then(resp => resp.json())
@@ -154,7 +139,7 @@ export async function getLikeAnswer(options) {
         })
 };
 
-// Création de la requête GET afin de récupérer les likes des posts :
+// Création de la requête GET afin de vérifier si l'utilisateur à liké un post :
 export async function getLikeUser(options) {
     return fetch(urlGetLikeUser, options)
         .then(resp => resp.json())
@@ -164,7 +149,7 @@ export async function getLikeUser(options) {
         })
 };
 
-// Création de la requête GET afin de récupérer les likes des reponses :
+// Création de la requête GET afin de vérifier si l'utilisateur à liké une reponse :
 export async function getLikeUserAnswer(options) {
     return fetch(urlGetLikeUserAnswer, options)
         .then(resp => resp.json())
@@ -174,27 +159,27 @@ export async function getLikeUserAnswer(options) {
         })
 };
 
-// Création de la requête POST afin d'ajouter un likes sur un post :
+// Création de la requête POST afin d'ajouter un like sur un post :
 export async function getLikeUp(options) {
     return fetch(urlGetLikeUp, options)
         .then(resp => resp.json())
 
 };
 
-// Création de la requête POST afin d'ajouter un likes sur un reponses :
+// Création de la requête POST afin d'ajouter un like sur un reponses :
 export async function getLikeUpAnswer(options) {
     return fetch(urlGetLikeUpAnswer, options)
         .then(resp => resp.json())
 
 };
 
-// Création de la requête POST afin d'ajouter un likes sur un post :
+// Création de la requête POST afin de supprimer un like sur un post :
 export async function getLikeDown(options) {
     return fetch(urlGetLikeDown, options)
         .then(resp => resp.json())
 };
 
-// Création de la requête POST afin d'ajouter un likes sur un reponses :
+// Création de la requête POST afin de supprimer un like sur un reponses :
 export async function getLikeDownAnswer(options) {
     return fetch(urlGetLikeDownAnswer, options)
         .then(resp => resp.json())

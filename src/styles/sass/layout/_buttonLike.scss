@@ -4,12 +4,22 @@
     justify-content: space-between;
     border: none;
     background-color: rgb(53, 53, 233);
-    width: 100%;
+    width: 60%;
     margin: 10px;
+    height: 70px;
     padding: 5px;
     font-size: 25px;
     color:rgb(209,81,90);
+    @media (max-width: 425px) {
+        margin: 0px;
+    }
     > .active {
         display: none;
+    }
+    > p {
+        margin-left: 10px;
+    }
+    &:hover {
+        transform: scale(1.3);
     }
 }

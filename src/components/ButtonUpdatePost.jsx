@@ -6,17 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane, faPen} from '@fortawesome/free-solid-svg-icons'
 
 function ButtonUpdatePost ({getMessage, msg_id, userId, optionsGetMessage}) {
-    const [inputValue, setInputValue] = useState('');
-    const messageUtilisateurId = userId;
-    const currentUserId = sessionStorage.getItem("userId");
+    let [inputValue, setInputValue] = useState('');
+    let [isActive, setIsActive] = useState(false);
+    let messageUtilisateurId = userId;
+    let currentUserId = sessionStorage.getItem("userId");
 
     function openText() {
-        const textArea = document.getElementsByClassName("inputTextarea");
-
-        if (textArea[0].style.display == "none") {
-            textArea[0].style.display = "block";
+        if (isActive == false) {
+            setIsActive(true);
         } else {
-            textArea[0].style.display = "none";
+            setIsActive(false)
         }
     };
 
@@ -47,7 +46,7 @@ function ButtonUpdatePost ({getMessage, msg_id, userId, optionsGetMessage}) {
     return (
         <div className='inputUpdate'>
             <button type="button" className="buttonUpdate" onClick={() => openText()}><FontAwesomeIcon icon={faPen} /></button>
-            <form className='inputTextarea'>
+            <form className={isActive ? '' : 'visible'}>
                 <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} required />
                 <button type="submit" onClick={(e) => sendUpdate(e)}><FontAwesomeIcon icon={faPaperPlane}/></button>
             </form>

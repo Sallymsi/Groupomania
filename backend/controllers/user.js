@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-
+const dbCon = require("../others/ConDB");
 
 // Enregistre un nouvel utilisateur dans la base de donnée :
 exports.signup = (req, res, next) => {
@@ -15,16 +15,10 @@ exports.signup = (req, res, next) => {
             let image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
             let sql = "INSERT INTO utilisateur (nom, prenom, email, password, image) VALUES (?, ?, ?, ?, ?)";
 
-            const db = mysql.createConnection({
-                database: "groupomania",
-                host: "localhost",
-                user: "root",
-                password: "peluche",
-            })
+            const db = dbCon();
 
             db.connect(function(err) {
                 if (err) throw err;
-                console.log("Connecté à la base de données MySQL!");
                 db.query(sql, [nom, prenom, email, password, image], function (err, result) {
                     if (err) throw err;
                     res.status(201).json({ message: 'Utilisateur créé !' })
@@ -40,12 +34,7 @@ exports.login = (req, res, next) => {
     let password = req.body.password;
     let sql = "SELECT * FROM  utilisateur WHERE email= ?";
 
-    const db = mysql.createConnection({
-        database: "groupomania",
-        host: "localhost",
-        user: "root",
-        password: "peluche",
-    })
+    const db = dbCon();
 
     db.connect(function(err) {
         if (err) throw err;
@@ -78,16 +67,10 @@ exports.getImgById = (req, res, next) => {
     let userId = req.params.userId;
     let sql = "SELECT image FROM `utilisateur` WHERE id = ?";
 
-    const db = mysql.createConnection({
-        database: "groupomania",
-        host: "localhost",
-        user: "root",
-        password: "peluche"
-    })
+    const db = dbCon();
 
     db.connect(function(err) {
         if (err) throw err;
-        console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
             res.status(201).json({
@@ -96,7 +79,6 @@ exports.getImgById = (req, res, next) => {
         }); 
     })
 };
-
 
 // Update l'image & password :
 exports.changeInfo = (req, res, next) => {
@@ -110,16 +92,10 @@ exports.changeInfo = (req, res, next) => {
         }
     }))
 
-    const db = mysql.createConnection({
-        database: "groupomania",
-        host: "localhost",
-        user: "root",
-        password: "peluche",
-    })
+    const db = dbCon();
     
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
-            console.log(req.body);
             let password = hash;
             let id = req.body.id;
             let image = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
@@ -127,7 +103,6 @@ exports.changeInfo = (req, res, next) => {
 
             db.connect(function(err) {
                 if (err) throw err;
-                console.log("Connecté à la base de données MySQL!");
                 db.query(sql, [password, image, id], function (err, result) {
                     if (err) throw err;
                     res.status(201).json({ message: 'Utilisateur mis à jour !' })
@@ -137,7 +112,6 @@ exports.changeInfo = (req, res, next) => {
         .catch(error => res.status(500).json({ message: error }));
 };
 
-
 // Delete l'utilisateur de la base de donnée :
 exports.deleteUser = (req, res, next) => {
     let userId = req.body.userId;
@@ -146,6 +120,8 @@ exports.deleteUser = (req, res, next) => {
     let sql = 'DELETE FROM utilisateur WHERE id = ?';
     let sql2 = 'DELETE FROM message WHERE utilisateur_id = ?';
     let sql3 = 'DELETE FROM reponse WHERE utilisateur_id = ?';
+    let sql4 = 'DELETE FROM message_like WHERE userId = ?';
+    let sql5 = 'DELETE FROM reponse_like WHERE userId = ?';
 
     fs.unlink(`images/${filename}`, ((err) => {
         if (err) throw err;
@@ -154,16 +130,10 @@ exports.deleteUser = (req, res, next) => {
         }
     }))
 
-    const db = mysql.createConnection({
-        database: "groupomania",
-        host: "localhost",
-        user: "root",
-        password: "peluche",
-    })
+    const db = dbCon();
 
     db.connect(function(err) {
         if (err) throw err;
-        console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
         }); 
@@ -174,30 +144,30 @@ exports.deleteUser = (req, res, next) => {
         
         db.query(sql3, [userId], function (err, result) {
             if (err) throw err;
+        });
+
+        db.query(sql4, [userId], function (err, result) {
+            if (err) throw err;
+        });
+
+        db.query(sql5, [userId], function (err, result) {
+            if (err) throw err;
             res.status(201).json({ message: 'Utilisateur supprimé !' })
         }); 
     })
 };
 
-
-// Renvoie l'accèe Admin de l'utilisateur : 
+// Vérifie l'accèe Admin de l'utilisateur : 
 exports.getAdmin = (req, res, next) => {
     const userId = req.headers.authorization.split(' ')[2];  
     let sql = "SELECT acces FROM utilisateur WHERE id = ?";
     
-    const db = mysql.createConnection({
-        database: "groupomania",
-        host: "localhost",
-        user: "root",
-        password: "peluche",
-    })
+    const db = dbCon();
 
     db.connect(function(err) {
         if (err) throw err;
-        console.log("Connecté à la base de données MySQL!");
         db.query(sql, [userId], function (err, result) {
             if (err) throw err;
-            console.log(result);
             res.status(201).json({ acces: result[0].acces });
         }); 
     })

@@ -9,7 +9,7 @@ const MIME_TYPES = {
 };
 
 
-// Configuration de Multer :
+// Configuration de Multer pour les fichier utilisateurs :
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'files');

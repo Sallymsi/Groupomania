@@ -46,8 +46,8 @@ function Discussion({message, getMessage, optionsGetMessage}) {
                                         <h2>{msg.prenom} {msg.nom}</h2>
                                     </div>
                                     <div className='blockRight'>
-                                        <ButtonDeletePost msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
                                         <ButtonUpdatePost msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg.message} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
+                                        <ButtonDeletePost msg_id = {msg.id} userId = {msg.utilisateur_id} message = {msg} getMessage = {getMessage} optionsGetMessage = {optionsGetMessage}/>
                                         <div className='blockLike'>
                                             <ButtonLikePost msg_id = {msg.id} />
                                         </div>
@@ -57,8 +57,9 @@ function Discussion({message, getMessage, optionsGetMessage}) {
                                     <h2>{msg.message}</h2>
                                     {msg.file && (
                                         <div className='imgFile'>
-                                            <img alt='file' src={msg.file}></img>
-                                            <video controls src={msg.file} type="video/mp4" alt='file'></video>
+                                            {msg.file.includes(".mp4") ?
+                                             (<video controls src={msg.file} type="video/mp4" alt='file'></video>) 
+                                             : (<img alt='file' src={msg.file}></img>)}
                                         </div>
                                     )}
                                 </div>

@@ -5,12 +5,15 @@
     padding: 5px;
     font-size: 25px;
     color:rgb(209,81,90);
+    margin-left: 20px;
+    @media (max-width: 425px) {
+        margin: 0px;
+    }
+    &:hover {
+        transform: scale(1.3);
+    }
 }
 
-.inputTextarea {
-    display: none;
-}
-
-.inputTextareaAnswer {
+.visible {
     display: none;
 }

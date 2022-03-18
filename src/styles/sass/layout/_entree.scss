@@ -1,9 +1,12 @@
 .entreeMsg {
-    width: 90%;
+    width: 100%;
     margin: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 525px) {
+        margin: 10px;
+    }
     > input {
         width: 75%;
         height: 30px;
@@ -20,6 +23,9 @@
         font-size: 25px;
         color: rgb(53, 53, 233);
         background-color: rgb(209,81,90);
+        @media (max-width: 450px) {
+            width: 25%;
+        }
     }
     
 }

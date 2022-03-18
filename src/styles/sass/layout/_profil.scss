@@ -6,6 +6,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 1200px) {
+        width: 100%;
+    }
     > .containProfil {
         box-sizing: border-box;
         background-color: rgb(53, 53, 233);
@@ -17,6 +20,9 @@
         > .containImg {
             display: flex;
             align-items: center;
+            @media (max-width: 700px ) {
+                justify-content: space-between;
+            }
             > .changeImg {
                 width: 70px;
                 height: 70px;
@@ -24,18 +30,33 @@
                 border: 2px solid white;
                 border-radius: 50px;
                 overflow: hidden;
+                @media (max-width: 550px ) {
+                    width: 60px;
+                    height: 60px;
+                    margin: 0px;
+                }
+                @media (max-width: 400px ) {
+                    display: none;
+                }
                 > img {
                     object-fit: cover;
                     object-position: center;
                     width: 70px;
+                    @media (max-width: 550px ) {
+                        width: 60px;
+                    }
                 }
             }
             > .inputDiv {
+                width: 70%;
                 > label > h2 {
                     font-family: "Ubuntu";
                     color: rgb(209,81,90);
                     font-size: 22px;
                     margin: 0px;
+                    @media (max-width: 600px ) {
+                        font-size: 18px;
+                    }
                 }
             }
         }
@@ -43,24 +64,39 @@
             font-family: "Ubuntu";
             color: rgb(209,81,90);
             font-size: 22px;
+            @media (max-width: 600px ) {
+                font-size: 18px;
+            }
         }
         > .inputDiv {
             > label > p {
-            font-family: "Ubuntu";
-            color: rgb(209,81,90);
-            font-size: 22px;
-            margin-bottom: 0px;
+                font-family: "Ubuntu";
+                color: rgb(209,81,90);
+                font-size: 22px;
+                margin-bottom: 0px;
+                @media (max-width: 550px ) {
+                    font-size: 18px;
+                }
             }
             > input {
                 width: 25%;
                 height: 30px;
                 border: 1px solid rgb(209,81,90);
                 border-radius: 10px;
+                @media (max-width: 800px ) {
+                    width: 60%;
+                }
+                @media (max-width: 500px ) {
+                    width: 100%;
+                }
             }
         }
         > .button {
             margin-top: 20px;
             margin-left: 30px;
+            @media (max-width: 800px ) {
+                width: 100%;
+            }
             > input {
                 width: 20%;
                 height: 40px;
@@ -73,7 +109,10 @@
                 font-size: 20px;
                 color: rgb(53, 53, 233);
                 background-color: rgb(209,81,90);
-        } 
+                @media (max-width: 800px ) {
+                    width: 40%;
+                }
+            } 
         } 
     }
     > aside {
@@ -87,6 +126,12 @@
         padding: 30px;
         width: 95%;
         height: 80px;
+        @media (max-width: 1000px ) {
+            height: 180px;
+        }
+        @media (max-width: 550px ) {
+            margin-bottom: 5000px;
+        }
         > label > h2 {
             font-family: "Ubuntu";
             color: rgb(209,81,90);
@@ -104,6 +149,9 @@
             font-size: 20px;
             color: rgb(53, 53, 233);
             background-color: rgb(209,81,90);
+            @media (max-width: 700px ) {
+                width: 40%;
+            }
         }
     }
 }

@@ -27,7 +27,6 @@ function Banner() {
                 <nav>
                     <li><Link to="/homepage"><a><FontAwesomeIcon icon={faChalkboard}/></a></Link></li>
                     <li><Link to="/profil"><a><FontAwesomeIcon icon={faAddressCard}/></a></Link></li>
-                    {/*<li><Link to="/amis"><a><FontAwesomeIcon icon={faUsers}/></a></Link></li>*/}
                     <li><Link to="/" onClick={disconnect}><a><FontAwesomeIcon icon={faSignOutAlt}/></a></Link></li>
                 </nav>
             </div>
