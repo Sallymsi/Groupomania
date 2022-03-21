@@ -25,6 +25,9 @@ code {
 .homeFond {
   background-image: url("../images/fond.jpg");
   background-repeat: no-repeat;
+  background-position: fixed;
   background-size: cover;
-  height: 100vh;
+  @media (min-width: 900px) {
+    height: 100vh;
+  }
 }
