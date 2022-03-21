@@ -66,11 +66,11 @@ function Profil() {
                 <h2>Pour plus de sécurité, changez de mot de passe régulièrement : </h2>
                 <div className='inputDiv'>
                     <label for="password"><p>Veuillez taper votre mot de passe :  </p></label><br></br>
-                    <input type="password" name="password" id="password" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
+                    <input type="password" name="password" id="password" aria-required="true" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
                 </div>
                 <div className='inputDiv'>
                     <label for="repeatPassword"><p>Veuillez retaper votre mot de passe :  </p></label><br></br>
-                    <input type="password" name="repeatPassword" id="repeatPassword" value={repeatPasswordInputValue} onChange={(e) => setRepeatPasswordInputValue(e.target.value)} required/>
+                    <input type="password" name="repeatPassword" id="repeatPassword" aria-required="true" value={repeatPasswordInputValue} onChange={(e) => setRepeatPasswordInputValue(e.target.value)} required/>
                 </div>
                 <div className='button'>
                     <input type="submit" value="Envoyer !" id="register" onClick={handleClick}></input>

@@ -37,23 +37,23 @@ function Form() {
                 <form method="post" className='form'>
                     <div className='inputDiv'>
                         <label for="firstName">Prénom: </label><br></br>
-                        <input type="text" name="firstName" id="firstName" value={firstInputValue} onChange={(e) => setFirstInputValue(e.target.value)} required/>
+                        <input type="text" name="firstName" id="firstName" aria-required="true" value={firstInputValue} onChange={(e) => setFirstInputValue(e.target.value)} required/>
                     </div>
                     <div className='inputDiv'>
                         <label for="lastName">Nom: </label><br></br>
-                        <input type="text" name="lasttName" id="lastName" value={lastInputValue} onChange={(e) => setLastInputValue(e.target.value)} required/>
+                        <input type="text" name="lasttName" id="lastName" aria-required="true" value={lastInputValue} onChange={(e) => setLastInputValue(e.target.value)} required/>
                     </div>
                     <div className='inputDiv'>
                         <label for="email">Email: </label><br></br>
-                        <input type="text" name="email" id="email" value={emailInputValue} onChange={(e) => setEmailInputValue(e.target.value)} required/>
+                        <input type="text" name="email" id="email" aria-required="true" value={emailInputValue} onChange={(e) => setEmailInputValue(e.target.value)} required/>
                     </div>
                     <div className='inputDiv'>
                         <label for="password">Mot de passe: </label><br></br>
-                        <input type="password" name="password" id="password" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
+                        <input type="password" name="password" id="password" aria-required="true" value={passwordInputValue} onChange={(e) => setPasswordInputValue(e.target.value)} required/>
                     </div>
                     <div className='inputDiv'>
                         <label for="image">Insérer une image: </label><br></br>
-                        <input type="file" name="image" id="image" onChange={(e) => setImageInputValue(e.target.files[0])} />
+                        <input type="file" name="image" id="image" aria-required="true" onChange={(e) => setImageInputValue(e.target.files[0])} />
                     </div>
                     <div className='button'>
                         <input type="submit" value="S'inscrire !" id="register" onClick={handleClick}>

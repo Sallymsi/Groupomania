@@ -42,7 +42,6 @@ function ButtonDeletePost ({getMessage, msg_id, userId, message, optionsGetMessa
         
     }
 
-
     return (
         <div>
             <button type="button" className="buttonDelete" onClick={(e) => sendDelete(e, msg_id)}><FontAwesomeIcon icon={faTrash} /></button> 
