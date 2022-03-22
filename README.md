@@ -23,10 +23,11 @@ You may also see any lint errors in the console.
 
 - Avoir Node.js
 - npm install
+- nodemon server
 
 ## BDD :
 
 - MySql
-- Dans le dossier "others", veuillez mettre à jour les inforamtions de connection.
+- Dans le dossier "others", veuillez mettre à jour les inforamtions de connexion.
 - Vous trouverez ci-joint la structure de la BDD afin de pouvoir lancer le projet depuis votre machine.
 
