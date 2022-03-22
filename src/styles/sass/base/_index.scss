@@ -27,7 +27,5 @@ code {
   background-repeat: no-repeat;
   background-position: fixed;
   background-size: cover;
-  @media (min-width: 900px) {
-    height: 100vh;
-  }
+  height: 100vh;
 }
