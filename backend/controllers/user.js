@@ -39,6 +39,7 @@ exports.login = (req, res, next) => {
     db.connect(function(err) {
         if (err) throw err;
         db.query(sql, [email], function (err, result) {
+            if (err) throw err;
             if (!result[0]) {
                 return res.status(401).json({ error: "utilisateur introuvable" })
             };
@@ -158,7 +159,7 @@ exports.deleteUser = (req, res, next) => {
 
 // Vérifie l'accèe Admin de l'utilisateur : 
 exports.getAdmin = (req, res, next) => {
-    const userId = req.headers.authorization.split(' ')[2];  
+    let userId = req.headers.authorization.split(' ')[2];  
     let sql = "SELECT acces FROM utilisateur WHERE id = ?";
     
     const db = dbCon();

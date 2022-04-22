@@ -8,7 +8,7 @@ function Profil() {
     const [imageValue, setImageValue] = useState('')
     const [passwordInputValue, setPasswordInputValue] = useState('')
     const [repeatPasswordInputValue, setRepeatPasswordInputValue] = useState('')
-    let userId = sessionStorage.getItem("userId");
+    const userId = sessionStorage.getItem("userId");
 
     useEffect(() => {
         getImgById(userId).then((img) => setImageValue(img))
@@ -24,7 +24,8 @@ function Profil() {
 
         const options = {
             method: "POST",
-            body: form
+            body: form,
+            headers: {"Authorization": "Bearer " + sessionStorage.getItem("token")}
         }
 
         if (passwordInputValue === repeatPasswordInputValue) {
